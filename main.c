@@ -11,14 +11,26 @@
 #define LOWERCASE_CHAR_MIN 97
 #define DISTANCE_FROM_UPPER_TO_LOWER_CHAR 32
 
+// Functions for operation of operation of program
 void display_ascii_art(void);
 void display_menu(void);
 char ask_command(void);
 int check_user_command(char command_given);
+int function_router(char command, char program_string[]);
+
+// Functions for user commands
+void read_string(char s[]);
+void print_string(char s[]);
+int count_vowels(char s[]);
+int count_consonants(char s[]);
+void to_lower(char s[]);
+void to_upper(char s[]);
+void read_file(char s[]);
+void write_file(char s[]);
 
 int main(void)
 {
-    // char user_string[STRING_SIZE] = "Hello World";
+    char program_string[STRING_SIZE] = "Hello World";
     char command = ' ';
 
     display_menu();
@@ -26,6 +38,7 @@ int main(void)
     while (command != 'X')
     {
         command = ask_command();
+        function_router(command, program_string);
     }
 
     return 0;
@@ -125,4 +138,40 @@ int check_user_command(char command_given)
         return 0;
         break;
     }
+}
+
+int function_router(char command, char program_string[])
+{
+    switch (command)
+    {
+    case 'A':
+        return count_vowels(program_string);
+        break;
+    case 'B':
+        return count_consonants(program_string);
+        break;
+    case 'C':
+        to_upper(program_string);
+        break;
+    case 'D':
+        to_lower(program_string);
+        break;
+    case 'E':
+        print_string(program_string);
+        break;
+    case 'F':
+        read_string(program_string);
+        break;
+    case 'G':
+        read_file(program_string);
+        break;
+    case 'H':
+        write_file(program_string);
+        break;
+    case 'M':
+        display_menu();
+        break;
+    }
+
+    return 0;
 }
