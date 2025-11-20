@@ -175,3 +175,45 @@ int function_router(char command, char program_string[])
 
     return 0;
 }
+
+int count_vowels(char s[])
+{
+    printf("A\n");
+    return 1;
+}
+
+int count_consonants(char s[])
+{
+    printf("B\n");
+    return 1;
+}
+
+void to_upper(char s[])
+{
+    printf("C\n");
+}
+
+void to_lower(char s[])
+{
+    printf("D\n");
+}
+
+void print_string(char s[])
+{
+    printf("E\n");
+}
+
+void read_string(char s[])
+{
+    printf("F\n");
+}
+
+void read_file(char s[])
+{
+    printf("G\n");
+}
+
+void write_file(char s[])
+{
+    printf("H\n");
+}
