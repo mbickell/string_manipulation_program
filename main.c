@@ -9,7 +9,10 @@
 #define UPPERCASE_CHAR_MIN 65
 #define LOWERCASE_CHAR_MAX 122
 #define LOWERCASE_CHAR_MIN 97
-#define DISTANCE_FROM_UPPER_TO_LOWER_CHAR 32
+#define DISTANCE_FROM_UPPER_TO_LOWER_CHAR (LOWERCASE_CHAR_MAX - UPPERCASE_CHAR_MAX)
+
+#define UPPERCASE_CHAR_CHECK(c) ((c) >= UPPERCASE_CHAR_MIN && (c) <= UPPERCASE_CHAR_MAX)
+#define LOWERCASE_CHAR_CHECK(c) ((c) >= LOWERCASE_CHAR_MIN && (c) <= LOWERCASE_CHAR_MAX)
 
 // Functions for operation of operation of program
 void display_ascii_art(void);
@@ -102,7 +105,7 @@ char ask_command(void)
 
         user_input = buffer[0];
 
-        if (user_input >= LOWERCASE_CHAR_MIN && user_input <= LOWERCASE_CHAR_MAX)
+        if (LOWERCASE_CHAR_CHECK(user_input))
         {
             user_input -= DISTANCE_FROM_UPPER_TO_LOWER_CHAR;
         }
@@ -213,9 +216,8 @@ int count_consonants(char s[])
 
     while (s[i] != '\0')
     {
-        if ((s[i] >= UPPERCASE_CHAR_MIN && s[i] <= UPPERCASE_CHAR_MAX) || (s[i] >= LOWERCASE_CHAR_MIN && s[i] <= LOWERCASE_CHAR_MAX))
+        if (UPPERCASE_CHAR_CHECK(s[i]) || LOWERCASE_CHAR_CHECK(s[i]))
         {
-            printf("%c\n", s[i]);
             letter_count++;
         }
 
@@ -232,6 +234,24 @@ void to_upper(char s[])
 
 void to_lower(char s[])
 {
+    int i = 0;
+
+    while (s[i] != '\0')
+    {
+        char current_char = s[i];
+
+        if (UPPERCASE_CHAR_CHECK(current_char))
+        {
+            current_char += DISTANCE_FROM_UPPER_TO_LOWER_CHAR;
+        }
+
+        s[i] = current_char;
+
+        i++;
+    }
+
+    s[i] = '\0';
+
     printf("D\n");
 }
 
