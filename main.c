@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// Base defines for hardcoded values
 #define STRING_SIZE 100
 #define ASCII_ART_LINES 6
 #define ASCII_ART_CHARACTERS 50
@@ -9,19 +10,20 @@
 #define UPPERCASE_CHAR_MIN 65
 #define LOWERCASE_CHAR_MAX 122
 #define LOWERCASE_CHAR_MIN 97
-#define DISTANCE_FROM_UPPER_TO_LOWER_CHAR (LOWERCASE_CHAR_MAX - UPPERCASE_CHAR_MAX)
 
+// Computed Macros
+#define DISTANCE_FROM_UPPER_TO_LOWER_CHAR (LOWERCASE_CHAR_MAX - UPPERCASE_CHAR_MAX)
 #define UPPERCASE_CHAR_CHECK(c) ((c) >= UPPERCASE_CHAR_MIN && (c) <= UPPERCASE_CHAR_MAX)
 #define LOWERCASE_CHAR_CHECK(c) ((c) >= LOWERCASE_CHAR_MIN && (c) <= LOWERCASE_CHAR_MAX)
 
-// Functions for operation of operation of program
+// Function definitions for operation of program
 void display_ascii_art(void);
 void display_menu(void);
 char ask_command(void);
 int check_user_command(char command_given);
 int function_router(char command, char program_string[]);
 
-// Functions for user commands
+// Function definitions for user commands
 void read_string(char s[]);
 void print_string(char s[]);
 int count_vowels(char s[]);
