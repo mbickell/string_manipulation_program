@@ -200,12 +200,24 @@ void to_lower(char s[])
 
 void print_string(char s[])
 {
-    printf("E\n");
+    printf("%s\n", s);
 }
 
 void read_string(char s[])
 {
-    printf("F\n");
+    char buffer[STRING_SIZE];
+    int i = 0;
+
+    printf("\nGive string: ");
+    fgets(buffer, STRING_SIZE, stdin);
+
+    while (buffer[i] != '\0')
+    {
+        s[i] = buffer[i];
+        i++;
+    }
+
+    s[i] = '\0';
 }
 
 void read_file(char s[])
