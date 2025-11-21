@@ -10,6 +10,7 @@
 #define UPPERCASE_CHAR_MIN 65
 #define LOWERCASE_CHAR_MAX 122
 #define LOWERCASE_CHAR_MIN 97
+#define FILE_NAME "string.txt"
 
 // Computed Macros
 #define DISTANCE_FROM_UPPER_TO_LOWER_CHAR (LOWERCASE_CHAR_MAX - UPPERCASE_CHAR_MAX)
@@ -295,10 +296,39 @@ void read_string(char s[])
 
 void read_file(char s[])
 {
-    printf("G\n");
+    char buffer[STRING_SIZE];
+    FILE *file_pointer;
+
+    file_pointer = fopen(FILE_NAME, "r");
+
+    // check if the file has been opened successfully
+    if (file_pointer == NULL)
+    {
+        printf("File cannot be read");
+    }
+    else
+    {
+        fgets(buffer, STRING_SIZE, file_pointer);
+    }
+
+    printf("%s\n", buffer);
+    fclose(file_pointer);
 }
 
 void write_file(char s[])
 {
-    printf("H\n");
+    FILE *file_pointer;
+
+    file_pointer = fopen(FILE_NAME, "w");
+
+    // check if the file has been opened successfully
+    if (file_pointer == NULL)
+    {
+        printf("File cannot be read");
+    }
+    else
+    {
+        fputs(s, file_pointer);
+    }
+    fclose(file_pointer);
 }
