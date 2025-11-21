@@ -178,8 +178,33 @@ int function_router(char command, char program_string[])
 
 int count_vowels(char s[])
 {
-    printf("A\n");
-    return 1;
+    int i = 0;
+    int counter = 0;
+
+    while (s[i] != '\0')
+    {
+        switch (s[i])
+        {
+        case 'a':
+        case 'A':
+        case 'e':
+        case 'E':
+        case 'i':
+        case 'I':
+        case 'o':
+        case 'O':
+        case 'u':
+        case 'U':
+            counter++;
+            break;
+        }
+
+        i++;
+    }
+
+    printf("%d\n", counter);
+
+    return counter;
 }
 
 int count_consonants(char s[])
