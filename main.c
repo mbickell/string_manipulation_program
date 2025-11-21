@@ -145,10 +145,10 @@ int function_router(char command, char program_string[])
     switch (command)
     {
     case 'A':
-        return count_vowels(program_string);
+        printf("%d\n", count_vowels(program_string));
         break;
     case 'B':
-        return count_consonants(program_string);
+        printf("%d\n", count_consonants(program_string));
         break;
     case 'C':
         to_upper(program_string);
@@ -202,15 +202,27 @@ int count_vowels(char s[])
         i++;
     }
 
-    printf("%d\n", counter);
-
     return counter;
 }
 
 int count_consonants(char s[])
 {
-    printf("B\n");
-    return 1;
+    int i = 0;
+    int letter_count = 0;
+    int vowel_count = count_vowels(s);
+
+    while (s[i] != '\0')
+    {
+        if ((s[i] >= UPPERCASE_CHAR_MIN && s[i] <= UPPERCASE_CHAR_MAX) || (s[i] >= LOWERCASE_CHAR_MIN && s[i] <= LOWERCASE_CHAR_MAX))
+        {
+            printf("%c\n", s[i]);
+            letter_count++;
+        }
+
+        i++;
+    }
+
+    return letter_count - vowel_count;
 }
 
 void to_upper(char s[])
