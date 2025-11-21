@@ -39,6 +39,7 @@ int main(void)
     char program_string[STRING_SIZE] = "Hello World";
     char command = ' ';
 
+    display_ascii_art();
     display_menu();
 
     while (command != 'X')
@@ -81,8 +82,6 @@ void display_menu(void)
         "H) Write string to file\n",
         "M) Display this menu\n",
         "X) Exit the program\n"};
-
-    display_ascii_art();
 
     for (int i = 0; i < NUMBER_OF_MENU_ITEMS; i++)
     {
@@ -151,7 +150,7 @@ int function_router(char command, char program_string[])
     switch (command)
     {
     case 'A':
-        printf("%d\n", count_vowels(program_string));
+        printf("String has %d vowels\n\n", count_vowels(program_string));
         break;
     case 'B':
         printf("%d\n", count_consonants(program_string));
@@ -175,6 +174,7 @@ int function_router(char command, char program_string[])
         write_file(program_string);
         break;
     case 'M':
+        display_ascii_art();
         display_menu();
         break;
     }
