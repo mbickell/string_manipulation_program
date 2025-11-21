@@ -153,7 +153,7 @@ int function_router(char command, char program_string[])
         printf("String has %d vowels\n\n", count_vowels(program_string));
         break;
     case 'B':
-        printf("%d\n", count_consonants(program_string));
+        printf("String has %d consonants\n\n", count_consonants(program_string));
         break;
     case 'C':
         to_upper(program_string);
@@ -249,6 +249,8 @@ void to_upper(char s[])
     }
 
     s[i] = '\0';
+
+    printf("\n");
 }
 
 void to_lower(char s[])
@@ -270,6 +272,8 @@ void to_lower(char s[])
     }
 
     s[i] = '\0';
+
+    printf("\n");
 }
 
 void print_string(char s[])
@@ -292,6 +296,8 @@ void read_string(char s[])
     }
 
     s[i] = '\0';
+
+    printf("\n");
 }
 
 void read_file(char s[])
@@ -304,15 +310,14 @@ void read_file(char s[])
     // check if the file has been opened successfully
     if (file_pointer == NULL)
     {
-        printf("File cannot be read");
+        printf("File cannot be read\n\n");
     }
     else
     {
         fgets(buffer, STRING_SIZE, file_pointer);
+        fclose(file_pointer);
+        printf("%s\n", buffer);
     }
-
-    printf("%s\n", buffer);
-    fclose(file_pointer);
 }
 
 void write_file(char s[])
@@ -324,11 +329,12 @@ void write_file(char s[])
     // check if the file has been opened successfully
     if (file_pointer == NULL)
     {
-        printf("File cannot be read");
+        printf("File cannot be read\n");
     }
     else
     {
         fputs(s, file_pointer);
+        fclose(file_pointer);
     }
-    fclose(file_pointer);
+    printf("\n");
 }
