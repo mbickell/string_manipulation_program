@@ -229,7 +229,23 @@ int count_consonants(char s[])
 
 void to_upper(char s[])
 {
-    printf("C\n");
+    int i = 0;
+
+    while (s[i] != '\0')
+    {
+        char current_char = s[i];
+
+        if (LOWERCASE_CHAR_CHECK(current_char))
+        {
+            current_char -= DISTANCE_FROM_UPPER_TO_LOWER_CHAR;
+        }
+
+        s[i] = current_char;
+
+        i++;
+    }
+
+    s[i] = '\0';
 }
 
 void to_lower(char s[])
@@ -251,8 +267,6 @@ void to_lower(char s[])
     }
 
     s[i] = '\0';
-
-    printf("D\n");
 }
 
 void print_string(char s[])
