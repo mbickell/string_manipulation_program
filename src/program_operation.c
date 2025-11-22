@@ -1,0 +1,135 @@
+#include <stdio.h>
+#include "generic.h"
+#include "program_operation.h"
+#include "string_functions.h"
+
+void display_ascii_art(void)
+{
+    char ascii_art[ASCII_ART_LINES][ASCII_ART_CHARACTERS] = {
+        "          __         .__\n",
+        "  _______/  |________|__| ____    ____\n",
+        " /  ___/\\   __\\_  __ \\  |/    \\  / ___\\\n",
+        " \\___ \\  |  |  |  | \\/  |   |  \\/ /_/  >\n",
+        "/____  > |__|  |__|  |__|___|  /\\___  /\n",
+        "     \\/                      \\//_____/\n"};
+
+    for (size_t i = 0; i < ASCII_ART_LINES; i++)
+    {
+        printf("%s", ascii_art[i]);
+    }
+
+    printf("\n");
+}
+
+void display_menu(void)
+{
+    char menu_items[NUMBER_OF_MENU_ITEMS][SIZE_OF_MENU_ITEMS] = {
+        "A) Count the number of vowels in the string\n",
+        "B) Count the number of consonants in the string\n",
+        "C) Convert the string to uppercase\n",
+        "D) Convert the string to lowercase\n",
+        "E) Display the current string\n",
+        "F) Enter another string\n",
+        "G) Read string from file\n",
+        "H) Write string to file\n",
+        "M) Display this menu\n",
+        "X) Exit the program\n"};
+
+    for (int i = 0; i < NUMBER_OF_MENU_ITEMS; i++)
+    {
+        printf("%s", menu_items[i]);
+    }
+
+    printf("\n");
+}
+
+char ask_command(void)
+{
+    char command_text[] = "Give Command: ";
+    char buffer[20];
+    char user_input;
+
+    int correct_input = 0;
+
+    while (!correct_input)
+    {
+        printf("%s", command_text);
+
+        fgets(buffer, sizeof(buffer), stdin);
+
+        user_input = buffer[0];
+
+        if (LOWERCASE_CHAR_CHECK(user_input))
+        {
+            user_input -= DISTANCE_FROM_UPPER_TO_LOWER_CHAR;
+        }
+
+        correct_input = check_user_command(user_input);
+
+        if (!correct_input)
+        {
+            printf("\n");
+        }
+    }
+
+    return user_input;
+}
+
+int check_user_command(char command_given)
+{
+    switch (command_given)
+    {
+    case 'A':
+    case 'B':
+    case 'C':
+    case 'D':
+    case 'E':
+    case 'F':
+    case 'G':
+    case 'H':
+    case 'M':
+    case 'X':
+        return 1;
+        break;
+    default:
+        return 0;
+        break;
+    }
+}
+
+int function_router(char command, char program_string[])
+{
+    switch (command)
+    {
+    case 'A':
+        printf("String has %d vowels\n\n", count_vowels(program_string));
+        break;
+    case 'B':
+        printf("String has %d consonants\n\n", count_consonants(program_string));
+        break;
+    case 'C':
+        to_upper(program_string);
+        break;
+    case 'D':
+        to_lower(program_string);
+        break;
+    case 'E':
+        print_string(program_string);
+        break;
+    case 'F':
+        read_string(program_string);
+        break;
+    case 'G':
+        read_file(program_string);
+        break;
+    case 'H':
+        write_file(program_string);
+        break;
+    case 'M':
+        display_ascii_art();
+        display_menu();
+        break;
+    }
+
+    return 0;
+}
