@@ -1,10 +1,10 @@
 IDIR =./include
 CC=gcc
-CFLAGS=-I$(IDIR) -Wall -Wextra -Wpedantic -std=c17 -g
+CFLAGS=-I$(IDIR) -Wall -Wextra -Wpedantic -g
 
 SRC=./src
 
-ODIR=./obj
+ODIR=./src/obj
 LDIR=../lib
 
 LIBS=-lm
