@@ -15,8 +15,10 @@ DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
 _OBJ=main.o string_functions.o program_operation.o
 OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
 
+setup:
+	mkdir -p $(ODIR)
 
-$(ODIR)/%.o: $(SRC)/%.c $(DEPS)
+$(ODIR)/%.o: $(SRC)/%.c $(DEPS) setup
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 main: $(OBJ)
@@ -24,4 +26,4 @@ main: $(OBJ)
 
 .PHONY: clean
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ ./main.exe
+	rm -rf $(ODIR) *~ core $(INCDIR)/*~ ./main.exe
